@@ -8,48 +8,37 @@
 <body>
 <div id="interface">
     <!--Cabeçalho da página.-->
-    <header id="cabecalho">
-        <img id="logo" src="_imagens/cropped-cooperativo-logo-5.jpg">
-        <nav id="menu">
-            <ul>
-                <li><a href="index.php">Inicial</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="contato.html">Contato</a></li>
-                <li><a href="Copere-conosco.php">Copere conosco</a></li>
-            </ul>
-        </nav>
-    </header>
+    <?php include_once 'includes/cabecalho.php'; ?>
     <!--Noticias e artigos.-->
     <section id="corpo">
         <article id="noticias">
-            <header id="cabnoticias">
-                <h1>Titulo Noticia</h1>
-                <h3>4 DE ABRIL DE 2019	~ DEIXE UM COMENTÁRIO</h3>
-            </header>
-            <p>
-                Esperei até ontem para poder ter um parecer sobre esta reforma que está sendo difundida como a salvação do Brasil. Ontem pois foi quando o ministro Guedes foi defender a reforma na câmara. Em Primeiro lugar parece que a reforma foi feita as pressas e nem a base de apoio do governo concorda com ela.
-            </p>
-        </article>
-        <article id="noticias">
-            <header id="cabnoticias">
-                <h1>Titulo Noticia</h1>
-                <h3>4 DE ABRIL DE 2019	~ DEIXE UM COMENTÁRIO</h3>
-            </header>
-            <p>
-                Esperei até ontem para poder ter um parecer sobre esta reforma que está sendo difundida como a salvação do Brasil. Ontem pois foi quando o ministro Guedes foi defender a reforma na câmara. Em Primeiro lugar parece que a reforma foi feita as pressas e nem a base de apoio do governo concorda com ela.
-            </p>
+            <?php
+            $q = "select id, titulo, datapub, conteudo from artigo order by datapub desc";
+            $busca = $banco->query($q);
+            if(!$busca){
+                echo "<p>Infelizmente não foram encontrados registros na base de dados!.</p>";
+            }else{
+                if($busca->num_rows==0){
+                    echo "<p>Nenhum registro encontrado!</p>";
+            }else{
+                while($reg=$busca->fetch_object()){
+                    echo "<header id='cabnoticias'>";
+                    echo "<h1><a href='detalhes.php?d=$reg->id'>$reg->titulo</a></h1>";
+                    echo "<h3>$reg->datapub</h3></header>";
+                    //Codigo responsavel pela limitacao do texto(mb_strmwidth) e exclusao das tags HTML(strip_tags)
+                    echo "<p>".mb_strimwidth(strip_tags($reg->conteudo), 0, 400, "...")."</p>";
+                }
+            }            
+            }
+            ?>
         </article>
     </section>
-    <!--Área reservada para publicidade-->
-    <aside id="lateral">
+    <!--Área reservada para publicidade e rodape-->
+    <?php include_once 'includes/publicidade.php';
+          include_once 'includes/rodape.php';
+          
+    ?>
 
-        Espaço reservado para publicidade.
-
-    </aside>
-    <footer id="rodape">
-
-        <p>Copyright &copy; 2019 - by Marcos Gauderth<br/>
-    </footer>
 </div>
 </body>
 </html>

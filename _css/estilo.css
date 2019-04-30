@@ -6,11 +6,10 @@ body{
 }
 
 div#interface{
-    width: 1920px;
+    width: 1800px;
     margin-left: auto;
     margin-right: auto;
 }
-
 /*Cabecalho.*/
 
 header#cabecalho img#logo{
@@ -38,7 +37,7 @@ nav#menu li, a{
     display: inline-block;
     text-transform: uppercase;
     font-family: Arial, sans-serif;
-    font-size: 12pt;
+    font-size: 10pt;
     padding: 10px 15px 10px 15px;
     margin: 5px;
 }
@@ -57,18 +56,23 @@ nav#menu a:hover{
 section#corpo{
     display: block;
     float: left;
-    width: 1100px;
+    width: 1000px;
     margin: 0px 0px 0px 65px;
 }
 section#corpo article#noticias{
-    border-bottom: 2px solid #d5d5d5;
+	margin-left: 300px;
     padding-bottom: 50px;
     padding-top: 50px;
-}
-section#corpo h1{
     font-family: Arial, sans-serif;
-    font-size: 20pt;
+    font-size: 14pt;
+}
+article#noticias h1, a{
+    font-family: Arial, sans-serif;
+    font-size: 18pt;
     color: #575757;
+}
+article#noticias a{
+    text-decoration: none;
 }
 section#corpo h3{
     font-family: tahoma, sans-serif;
@@ -79,13 +83,17 @@ section#corpo p{
     font-family: Arial, sans-serif;
     font-size: 14pt;
 }
+article#noticias li{
+    font-family: Arial, sans-serif;
+    font-size: 14pt;
+}
 
 /*Area de publicidade*/
 
 aside#lateral{
     display: block;
     float: right;
-    width: 600px;
+    width: 400px;
     height: 600px;
     background-color: #eaeaea;
     padding: 10px;
